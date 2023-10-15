@@ -47,10 +47,12 @@ def get_weather(location, date):
         current_weather_data = response.json().get('current')
         current_temperature = current_weather_data.get('temp')
         main_weather = current_weather_data.get('weather')[0].get('main')
-
-        response_message = f"""
-        The weather in {location.title()} on {date} is {main_weather} with a temperature of {_fahrenheit_to_celsius(current_temperature)}°C.
-        """
+        try:
+            response_message = f"""
+            The weather in {location.title()} on {date} is {main_weather} with a temperature of {_fahrenheit_to_celsius(current_temperature)}°C.
+            """
+        except (AttributeError, ValueError):
+            return 'Sorry, I do not know city which you provided('
         return response_message
     else:
         return "Unable to retrieve weather information."
