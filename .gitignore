@@ -63,4 +63,4 @@ venv/
 
 checkpoint/
 models/
-data.txt
+conven_chatbot.pem
