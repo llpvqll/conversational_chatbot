@@ -45,9 +45,7 @@ def amazon_transcribe(audio_file_obj, max_speakers=2):
             raise ValueError("Maximum detected speakers is 10.")
 
         file_name = 'audio.mp3'
-        print('hello before save voice method')
         job_uri = save_voice_to_s3(audio_file_obj, file_name)
-        print('hello after save voice method')
         job_name = str(file_name.split('.')[0])
 
         transcribe.start_transcription_job(
