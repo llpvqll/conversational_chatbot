@@ -1,39 +1,14 @@
 import requests
 import spacy
 import os
-import gpt_2_simple as gpt2
 from constants import (
     WEATHER_CONDITIONS,
     CLOSE_DATES,
-    GPT2_MODEL_NAME,
-    GPT2_STEPS,
 )
 from dotenv import load_dotenv
 
 load_dotenv()
 WEATHER_API_KEY = os.getenv("WEATHER_API_KEY")
-
-
-def fine_tune_gpt2(model_name, steps=200, run_name="my_chatbot"):
-    gpt2.download_gpt2(model_name=model_name)
-    sess = gpt2.start_tf_sess()
-    gpt2.finetune(
-        sess,
-        dataset='data.txt',
-        model_name=model_name,
-        steps=steps,
-        run_name=run_name
-    )
-    return sess
-
-
-GPT2_SESSION = fine_tune_gpt2(GPT2_MODEL_NAME, GPT2_STEPS)
-
-
-def generate_response(sess, model_name, user_input):
-    gpt2.load_gpt2(sess, model_name=model_name)
-    response = gpt2.generate(sess, model_name=model_name, prefix=user_input, return_as_list=True)[0]
-    return response
 
 
 def process_user_message(user_message):
@@ -43,7 +18,7 @@ def process_user_message(user_message):
     else:
         response_message = "I'm sorry, I couldn't understand your request."
 
-    return generate_response(GPT2_SESSION, GPT2_MODEL_NAME, response_message)
+    return response_message
 
 
 def parse_user_query(query):
