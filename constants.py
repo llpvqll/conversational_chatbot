@@ -35,3 +35,6 @@ CLOSE_DATES = {
     'today': date.today() - timedelta(days=0),
     'tomorrow': date.today() + timedelta(days=1)
 }
+
+GPT2_MODEL_NAME = "124M"
+GPT2_STEPS = 200

@@ -60,3 +60,7 @@ __pycache__/
 venv/
 
 .env
+
+checkpoint/
+models/
+data.txt
